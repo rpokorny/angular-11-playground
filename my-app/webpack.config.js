@@ -5,6 +5,7 @@
  * distribution and is available at https://www.eclipse.org/legal/epl-2.0/.
  */
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
+const CopyModulesWebpackPlugin = require('copy-modules-webpack-plugin');
 const path = require('path');
 
 module.exports = function() {
@@ -35,6 +36,9 @@ module.exports = function() {
       new AngularCompilerPlugin({
         tsConfigPath: './tsconfig.json',
         entryModule: 'src/app/app.module#AppModule'
+      }),
+      new CopyModulesWebpackPlugin({
+        destination: 'webpack-modules'
       })
     ],
     devtool: 'eval-source-map',
